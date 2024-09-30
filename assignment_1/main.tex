@@ -1,0 +1,93 @@
+\documentclass[11pt,twoside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{ragged2e}
+\usepackage{paracol}
+\usepackage{fancyhdr}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{setspace}
+\usepackage[margin={2.5cm,2.5cm}]{geometry}
+\usepackage{lastpage}
+\usepackage{bookmark}
+\usepackage{multicol}
+\setstretch{1.25}
+
+\newcommand{\front}{Title} %title to be shown in bold on the first page
+\newcommand{\shorthand}{Report} %name for the report to be shown on other pages
+\newcommand{\first}{First Name} %first name of the student
+\newcommand{\last}{Last Name} %last name of the student
+\newcommand{\num}{99999999} %student number of the student
+\newcommand{\lecturer}{Lecturer Name} %name of the lecturer of the course
+\newcommand{\course}{Course Name} %name of the course for which the report is
+\newcommand{\code}{999999999Y} %code of the course for which the report is
+
+\fancypagestyle{firststyle}
+{
+    \fancyhf{}
+    \lhead{}
+    \rhead{}
+    \fancyfoot[LE,RO]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+    \renewcommand{\footrulewidth}{0.4pt}
+    \renewcommand{\headrulewidth}{0pt}
+}
+\newcommand{\component}[1]{\input{components/#1}}
+
+\begin{document}
+\thispagestyle{firststyle}
+\begin{center}
+\includegraphics[width=0.6\textwidth]{Logo.jpg}\\
+\vspace{0.5cm}
+{\Large{\textbf{Report}}}
+\vspace*{0.1cm}
+\rule{1\textwidth}{.6pt}\\[0.4cm]
+{\huge \bfseries \front \par}\vspace{0.4cm}
+\rule{1\textwidth}{.6pt}\\
+\today\\[0.4cm]
+\begin{paracol}{2}
+\begin{leftcolumn}
+\RaggedRight
+Student:\\
+\first\\
+\last\\
+\num
+\end{leftcolumn}
+\begin{rightcolumn}
+\RaggedLeft
+Lecturer:\\
+\lecturer\\[0.1cm]
+Course:\\
+\course\\[0.1cm]
+Course code:\\
+\code
+\end{rightcolumn}
+\end{paracol}
+\end{center}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhfoffset[L]{1cm}
+\fancyhfoffset[R]{1cm}
+\lhead{\includegraphics[width=5cm]{figures/Logo.jpg}}
+\rhead{\bfseries \shorthand}
+\fancyfoot[L]{\first\ \last}
+\fancyfoot[R]{\footnotesize Page \thepage\ of \pageref{LastPage}}
+\fancyfootoffset[L]{1cm}
+\fancyfootoffset[R]{1cm}
+\renewcommand{\footrulewidth}{\headrulewidth}
+\setlength{\headheight}{29pt}
+\pagestyle{fancy}
+
+\newpage
+\tableofcontents
+
+\newpage
+\begin{multicols}{2}
+\component{introduction}
+\component{theory}
+\component{method}
+\component{discussion}
+\component{conclusion}
+\pdfbookmark[section]{References}{references}
+\bibliographystyle{ieeetr}
+\bibliography{main}
+\end{multicols}
+\end{document}
